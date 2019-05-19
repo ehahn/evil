@@ -8168,6 +8168,27 @@ maybe we need one line more with some text\n")
         "[z] z z z z z z z z z"
         ("\C-i")
         "new buffe[r]"))
+    (ert-info ("Test jumping backward and forward across >2 buffers")
+      (evil-test-buffer
+        "[z] z z z z z z z"
+        (":new" [return] "inew buffer 1" [escape])
+        "new buffer [1]"
+        (":new" [return] "inew buffer 2" [escape])
+        "new buffer [2]"
+        (":new" [return] "inew buffer 3" [escape])
+        "new buffer [3]"
+        ("\C-o")
+        "new buffer [2]"
+        ("\C-o")
+        "new buffer [1]"
+        ("C-o")
+        "[z] z z z z z z z"
+        ("C-i")
+        "new buffer [1]"
+        ("C-i")
+        "new buffer [2]"
+        ("C-i")
+        "new buffer [3]"))
     (ert-info ("Test jumping backward and forward with counts")
       (evil-test-buffer
         "[z] z z z z z z z z z"
